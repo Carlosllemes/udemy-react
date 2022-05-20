@@ -1,53 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handlePClick = this.handlePClick.bind(this)
     this.state = {
-      name: 'Carlos',
-      cont: 0
+      posts: [
+        {
+          id: 1,
+          title: 'carlos 1',
+          body: 'corpo 1'
+        },
+        {
+          id: 2,
+          title: 'carlos 2',
+          body: 'corpo 2'
+        },
+        {
+          id: 3,
+          title: 'carlos 3',
+          body: 'corpo 3'
+        }
+      ]
     }
   }
 
-  handlePClick() {
-    this.setState({ name: 'Carlos Lemes' })
-  }
-
-  handleAClick = (event) => {
-    const { cont } = this.state
-    event.preventDefault();
-    this.setState({cont: cont + 1}) 
-    console.log(cont)
-  }
-
-
-
   render() {
-    const { name, cont } = this.state
-
+    const { posts } = this.state
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p onClick={this.handlePClick}>
-            {name}
-          </p>
-
-          <a
-            onClick={this.handleAClick}
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-          {cont}
-          </a>
-        </header>
+      <div className='App'>
+        {posts.map(posts =>
+        (
+          <div key={posts.id}>
+            <h1>{posts.title}</h1>
+            <p>{posts.body}</p>
+          </div>
+        )
+        )}
       </div>
-    );
+    )
   }
 }
 export default App;
