@@ -1,5 +1,6 @@
 import './App.css';
 import { Component } from 'react';
+import { PostCard } from './PostCard';
 
 class App extends Component {
   state = {
@@ -26,7 +27,7 @@ class App extends Component {
   }
 
   render() {
-    const { posts, count } = this.state
+    const { posts } = this.state
     return (
       <div className='App'>
         <div className="container">
@@ -34,16 +35,13 @@ class App extends Component {
 
             {posts.map(posts =>
             (
-              <div key={posts.id} className="col-sm">
-                <div className="card">
-                  <img className="card-img-top" src={posts.cover} alt={posts.title} title={posts.title} />
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" className="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
+              <PostCard
+                key={posts.id}
+                id={posts.id}
+                cover={posts.cover}
+                title={posts.title}
+                body={posts.body}
+              />
             )
             )}
           </div>
